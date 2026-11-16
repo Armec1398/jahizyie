@@ -31,6 +31,14 @@
         {
           "photosPermission": "برای انتخاب عکس محصول و رسید خرید نیاز به دسترسی گالری است."
         }
+      ],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "kotlinVersion": "1.9.25"
+          }
+        }
       ]
     ]
   }
