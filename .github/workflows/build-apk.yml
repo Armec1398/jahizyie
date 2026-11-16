@@ -32,11 +32,11 @@ jobs:
           grep -H "android.kotlinVersion" android/gradle.properties
           grep -H "kotlinVersion" android/build.gradle | head -5
           grep -q "android.kotlinVersion=1.9.25" android/gradle.properties || (echo "KOTLIN PIN MISSING - CI is not on the fix commit" && exit 1)
-      - name: Build debug APK
+      - name: Build release APK (bundled JS, no Metro needed)
         working-directory: android
-        run: ./gradlew assembleDebug
+        run: ./gradlew assembleRelease
       - name: Upload APK
         uses: actions/upload-artifact@v7
         with:
-          name: jahizyie-apk
-          path: android/app/build/outputs/apk/debug/app-debug.apk
+          name: jahizyie-release-apk
+          path: android/app/build/outputs/apk/release/app-release.apk
