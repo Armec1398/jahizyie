@@ -27,6 +27,11 @@ jobs:
           npx expo --version
       - name: Prebuild
         run: npx expo prebuild --platform android --clean
+      - name: Verify Kotlin pin
+        run: |
+          grep -H "android.kotlinVersion" android/gradle.properties
+          grep -H "kotlinVersion" android/build.gradle | head -5
+          grep -q "android.kotlinVersion=1.9.25" android/gradle.properties || (echo "KOTLIN PIN MISSING - CI is not on the fix commit" && exit 1)
       - name: Build debug APK
         working-directory: android
         run: ./gradlew assembleDebug
